@@ -1,0 +1,103 @@
+
+{% extends "index.html"  %}
+
+{% block basetemp  %}
+<h1>Just work Stuff!</h1>
+
+<h1>Getting data</h1>
+<p>Let try to fetch data!!!</p>
+
+<h1>Sending data</h1>
+<form class="form-horizontal col-xs-12 col-lg-12 col-md-12 col-sm-12" method="POST" action="{{url_for('update_installcompaniesdb')}}" name="wform">
+	<label>Phone Number</label>
+	<input type="tel" class="form-control" id="phonenumber" placeholder="e.g 667-889-9870" name="phonenumber" required>
+	<label>Account Number</label>
+	<input type="number" class="form-control" id="accountnumber" placeholder="e.g 2345" name="accountnumber" required>
+	<label>Account Name</label>
+	<input type="text" class="form-control" id="accountname" placeholder="e.g Robby Ray" name="aacountname" required>
+	<button type="submit" class="btn btn-primary btn-md">Submit</button>
+</form>
+<div class="container">
+	<h1>Getting Install Companies data</h1>
+	<table class="table table-hover">
+		<tr>
+			<td class="info">ID</td>
+			<td class="info">PHONE NUMBER</td>
+			<td class="info">ACCOUNT NUMBER</td>
+			<td class="info">ACCOUNT NAME</td>
+		</tr>
+	{% for a in userlist %}
+		<tr>
+			<td>{{a["_id"]}}</td>
+			<td>{{a["phone_number"]}}</td>
+			<td>{{a["account_number"]}}</td>
+			<td>{{a["account_name"]}}</td>
+		</tr>
+	{% endfor %}
+</table>
+
+<form class="form-horizontal col-xs-12 col-lg-12 col-md-12 col-sm-12" method="POST" action="{{url_for('update_memodb')}}" name="wform">
+	<label>Memo Url</label>
+	<input type="url" class="form-control" id="memourl" placeholder="e.g http://127.0.0.1:5000/memo/LZrYNx06102/jyc238" name="memourl" required>
+	<label>MemoId</label>
+	<input type="text" class="form-control" id="address" placeholder="e.g Doe" name="address" pattern="[a-zA-Z0-9]+"required>
+	<label>DateTime</label>
+	<input type="datetime-local" class="form-control" id="datetime" placeholder="06/10/2020 08:30:56" name="datetime" required>
+	<button type="submit" class="btn btn-primary btn-md">Submit</button>
+</form>
+<div class="container">
+	<h1>Getting  memo data</h1>
+	<table class="table table-hover">
+		<tr>
+			<td class="info">ID</td>
+			<td class="info">MEMO URL</td>
+			<td class="info">MEMO ID</td>
+			<td class="info">DATETIME CREATION</td>
+		</tr>
+	{% for b in memolist %}
+		<tr>
+			<td>{{b["_id"]}}</td>
+			<td>{{b["memo_url"]}}</td>
+			<td>{{b["memo_id"]}}</td>
+			<td>{{b["datetime_creation"]}}</td>
+		</tr>
+	{% endfor %}
+</table>
+
+<form class="form-horizontal col-xs-12 col-lg-12 col-md-12 col-sm-12" method="POST" action="{{url_for('update_tokenmapdb')}}" name="wform">
+	<label>Token id/label>
+	<input type="text" class="form-control" id="tokenid" placeholder="e.g yhd2383102020" name="tokenid" pattern="[a-zA-Z0-9]+" required>
+	<label>Memo id</label>
+	<input type="text" class="form-control" id="memoid" placeholder="e.g SDrUTx06140528 " name="memoid" pattern="[a-zA-Z0-9]+" required>
+	<label>User id</label>
+	<input type="text" class="form-control" id="userid" placeholder="e.g " name="userid" pattern="[a-zA-Z0-9]+" required>
+	<label>Seen Status</label>
+	<input type="number" class="form-control" id="seenstatus" placeholder="e.g 0/1" name="seenstatus" required>
+	<button type="submit" class="btn btn-primary btn-md">Submit</button>
+</form>
+<div class="container">
+	<h1>Getting token_map data</h1>
+	<table class="table table-hover">
+		<tr>
+			<td class="info">ID</td>
+			<td class="info">TOKEN ID</td>
+			<td class="info">MEMO ID</td>
+			<td class="info">USER ID</td>
+			<td class="info">SEEN STATUS</td>
+		</tr>
+	{% for c in tokenlist %}
+		<tr>
+			<td>{{c["_id"]}}</td>
+			<td>{{c["token_id"]}}</td>
+			<td>{{c["memo_id"]}}</td>
+			<td>{{c["user_id"]}}</td>
+			<td>{{c["seen"]}}</td>
+		</tr>
+	{% endfor %}
+</table>
+
+
+
+
+
+{% endblock %}
